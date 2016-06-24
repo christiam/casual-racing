@@ -1,0 +1,3 @@
+awscli
+gspread
+oauth2client

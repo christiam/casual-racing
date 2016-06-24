@@ -1,0 +1,3 @@
+00 12 * Apr-Sep Tue src/announce-casual-racing-for-the-week.pl -cfg etc/config.ini
+00 12 * Apr-Sep Thu . venv/bin/activate; src/confirm-casual-racing-for-the-week.pl -cfg etc/config.ini
+00 12 * Apr-Sep Sun . venv/bin/activate; src/registrations.py -cfg etc/config.ini -reset
