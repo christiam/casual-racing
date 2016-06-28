@@ -1,13 +1,13 @@
 MAILTO=
 SHELL=/bin/bash
 # Times are in UTC
-0 17 * 4-9 2 cd casual-racing; perl -I$HOME/perl src/announce-casual-racing-for-the-week.pl -cfg etc/config.ini
-0 17 * 4-9 4 cd casual-racing; . venv/bin/activate; perl -I$HOME/perl src/confirm-casual-racing-for-the-week.pl -cfg etc/config.ini
+0 17 * 4-9 2 cd casual-racing; eval `perl -Mlocal::lib=$HOME/perl`; src/announce-casual-racing-for-the-week.pl -cfg etc/config.ini
+0 17 * 4-9 4 cd casual-racing; eval `perl -Mlocal::lib=$HOME/perl`; . venv/bin/activate; src/confirm-casual-racing-for-the-week.pl -cfg etc/config.ini
 0 17 * 4-9 7 cd casual-racing; . venv/bin/activate; src/registrations.py -cfg etc/config.ini -reset
 
 # Full test cycle, including confirmation/cancellation
-1 3 28 6 2 cd casual-racing; perl -I$HOME/perl src/announce-casual-racing-for-the-week.pl -cfg etc/config-test.ini
-2 3 28 6 2 cd casual-racing; . venv/bin/activate; src/registrations.py -cfg etc/config-test.ini -populate
-3 3 28 6 2 cd casual-racing; . venv/bin/activate; perl -I$HOME/perl src/confirm-casual-racing-for-the-week.pl -cfg etc/config-test.ini
-4 3 28 6 2 cd casual-racing; . venv/bin/activate; src/registrations.py -cfg etc/config-test.ini -reset
-5 3 28 6 2 cd casual-racing; . venv/bin/activate; perl -I$HOME/perl src/confirm-casual-racing-for-the-week.pl -cfg etc/config-test.ini
+# 08 12 28 6 2 cd casual-racing; eval `perl -Mlocal::lib=$HOME/perl`; src/announce-casual-racing-for-the-week.pl -cfg etc/config-test.ini
+# 09 12 28 6 2 cd casual-racing; . venv/bin/activate; src/registrations.py -cfg etc/config-test.ini -populate
+# 10 12 28 6 2 cd casual-racing; eval `perl -Mlocal::lib=$HOME/perl`; . venv/bin/activate; src/confirm-casual-racing-for-the-week.pl -cfg etc/config-test.ini
+# 11 12 28 6 2 cd casual-racing; . venv/bin/activate; src/registrations.py -cfg etc/config-test.ini -reset
+# 12 12 28 6 2 cd casual-racing; eval `perl -Mlocal::lib=$HOME/perl`; . venv/bin/activate; src/confirm-casual-racing-for-the-week.pl -cfg etc/config-test.ini
