@@ -31,26 +31,26 @@ forecast-sca.txt
 
 my $forecast = undef;
 my $rv = utils::bad_winds_for_sailing($forecast);
-ok($rv == 0, "undef input was failed as expected");
+ok($rv == 1, "undef input was failed as expected");
 
 $forecast = "";
 $rv = utils::bad_winds_for_sailing($forecast);
-ok($rv == 0, "empty input was failed as expected");
+ok($rv == 1, "empty input was failed as expected");
 
 $forecast = "Hello world";
 $rv = utils::bad_winds_for_sailing($forecast);
-ok($rv == 0, "short/invalid input was failed as expected");
+ok($rv == 1, "short/invalid input was failed as expected");
 
 foreach my $file (@sample_pass) {
 	$forecast = read_file("$data_dir/$file");
 	$rv = utils::bad_winds_for_sailing($forecast);
-	ok($rv == 1, "$file was passed as expected");
+	ok($rv == 0, "$file was passed as expected");
 }
 
 foreach my $file (@sample_fail) {
 	$forecast = read_file("$data_dir/$file");
 	$rv = utils::bad_winds_for_sailing($forecast);
-	ok($rv == 0, "$file was failed as expected");
+	ok($rv == 1, "$file was failed as expected");
 }
 done_testing();
 
