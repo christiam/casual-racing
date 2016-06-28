@@ -18,8 +18,10 @@ my $subject_no = "Casual racing on $date_str: CANCELLED";
 my $subject_yes = "Casual racing on $date_str: CONFIRMED";
 my $weather_report = lib::abs::path("selbybay-winds.pl");
 my $registration_check = lib::abs::path("registrations.py");
+my $no_email = 0;
 
-GetOptions("cfg=s" => \$config_file) || pod2usage(2);
+GetOptions("cfg=s"    => \$config_file,
+           "no_email" => \$no_email) || pod2usage(2);
 pod2usage(-verbose=>2, -message=>"Missing config file") if (not defined $config_file and not -f $config_file);
 my %cfg;
 Config::Simple->import_from($config_file, \%cfg);
@@ -55,8 +57,12 @@ if (utils::bad_winds_for_sailing($forecast) or $EXITVAL == 1) {
     $body = $body_confirm;
     $subject = $subject_yes;
 }
-
-send_email(to=>\@mailto, from=>$from, subj=>$subject, body=>$body);
+if ($no_email) {
+    print "$subject\n";
+} else {
+    send_email(to=>\@mailto, from=>$from, subj=>$subject, body=>$body);
+}
+exit(0);
 
 sub send_email
 {

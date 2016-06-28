@@ -34,10 +34,10 @@ test: check
 		src/registrations.py -cfg etc/config-test.ini -populate && \
 		src/registrations.py -cfg etc/config-test.ini
 	eval `perl -Mlocal::lib=${LOCAL_PERL}` src/announce-casual-racing-for-the-week.pl -cfg etc/config-test.ini
-	eval `perl -Mlocal::lib=${LOCAL_PERL}` src/confirm-casual-racing-for-the-week.pl -cfg etc/config-test.ini
+	eval `perl -Mlocal::lib=${LOCAL_PERL}` src/confirm-casual-racing-for-the-week.pl -cfg etc/config-test.ini -no_email
 	. venv/bin/activate && \
 		src/registrations.py -cfg etc/config-test.ini -reset
-	eval `perl -Mlocal::lib=${LOCAL_PERL}` src/confirm-casual-racing-for-the-week.pl -cfg etc/config-test.ini
+	eval `perl -Mlocal::lib=${LOCAL_PERL}` src/confirm-casual-racing-for-the-week.pl -cfg etc/config-test.ini -no_email
 
 module_list.txt:
 	find . -type f -name "*.p[lm]" -o -name "*.t" | \
