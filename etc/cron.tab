@@ -1,3 +1,6 @@
-00 12 * Apr-Sep Tue src/announce-casual-racing-for-the-week.pl -cfg etc/config.ini
-00 12 * Apr-Sep Thu . venv/bin/activate; src/confirm-casual-racing-for-the-week.pl -cfg etc/config.ini
-00 12 * Apr-Sep Sun . venv/bin/activate; src/registrations.py -cfg etc/config.ini -reset
+MAILTO=
+SHELL=/bin/bash
+# Times are in UTC
+00 17 * Apr-Sep Tue cd casual-racing; perl -I$HOME/perl src/announce-casual-racing-for-the-week.pl -cfg etc/config.ini
+00 17 * Apr-Sep Thu cd casual-racing; . venv/bin/activate; perl -I$HOME/perl src/confirm-casual-racing-for-the-week.pl -cfg etc/config.ini
+00 17 * Apr-Sep Sun cd casual-racing; . venv/bin/activate; src/registrations.py -cfg etc/config.ini -reset
