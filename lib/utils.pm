@@ -27,10 +27,10 @@ sailing, 0 otherwise.
 sub bad_winds_for_sailing
 {
     my $forecast = shift;
-	return 1 if (not defined($forecast));
-	return 1 if (length($forecast) < 50);
-	my @lines = split(/\n/, $forecast);
-	return 1 if (scalar(@lines) < 25);
+    return 1 if (not defined($forecast));
+    return 1 if (length($forecast) < 50);
+    my @lines = split(/\n/, $forecast);
+    return 1 if (scalar(@lines) < 25);
 
     return 1 if ($forecast =~ /small craft advisory/i);
 
@@ -40,8 +40,8 @@ sub bad_winds_for_sailing
             return 1 if ($lines[$i+1] =~ /GUSTS/i);
         }
     }
-	
-	return 0;
+
+    return 0;
 }
 
 1;
