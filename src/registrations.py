@@ -52,7 +52,7 @@ def main():
         return retval
 
     if args.populate:
-        print("Work sheet has " + str(wks.row_count) + " rows and " + str(wks.col_count) + " columns");
+        # print("Work sheet has " + str(wks.row_count) + " rows and " + str(wks.col_count) + " columns");
         populate(wks)
         return retval
 
