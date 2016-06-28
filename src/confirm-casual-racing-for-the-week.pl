@@ -7,11 +7,12 @@ use Params::Validate qw(validate :types);
 use Config::Simple ();
 use autodie;
 use Date::Manip;
-use lib::abs;
+use lib::abs qw(../lib);
+use utils;
 use IPC::System::Simple qw(run capture $EXITVAL EXIT_ANY);
 
 my $config_file;
-my $date = Date::Manip::Date->new("today");
+my $date = Date::Manip::Date->new("thursday");
 my $date_str = $date->printf("%D");
 my $subject_no = "Casual racing on $date_str: CANCELLED";
 my $subject_yes = "Casual racing on $date_str: CONFIRMED";
@@ -47,7 +48,7 @@ my ($body, $subject);
 my $forecast = capture(EXIT_ANY, $weather_report);
 die "$weather_report failed with exit code $EXITVAL" if ($EXITVAL);
 run(EXIT_ANY, "$registration_check -cfg $config_file");
-if ($forecast =~ /advisory/i or $EXITVAL == 1) {
+if (utils::bad_winds_for_sailing($forecast) or $EXITVAL == 1) {
     $body = $body_cancel;
     $subject = $subject_no;
 } else {
