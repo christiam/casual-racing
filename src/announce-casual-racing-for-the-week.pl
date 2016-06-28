@@ -5,6 +5,7 @@ use Getopt::Long;
 use Pod::Usage;
 use Params::Validate qw(validate :types);
 use Config::Simple ();
+use lib::abs qw(../lib);
 use autodie;
 use Date::Manip;
 my $config_file;
