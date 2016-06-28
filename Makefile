@@ -33,11 +33,11 @@ test: check
 		src/registrations.py -cfg etc/config-test.ini -reset && \
 		src/registrations.py -cfg etc/config-test.ini -populate && \
 		src/registrations.py -cfg etc/config-test.ini
-	src/announce-casual-racing-for-the-week.pl -cfg etc/config-test.ini
-	src/confirm-casual-racing-for-the-week.pl -cfg etc/config-test.ini
+	eval `perl -Mlocal::lib=${LOCAL_PERL}` src/announce-casual-racing-for-the-week.pl -cfg etc/config-test.ini
+	eval `perl -Mlocal::lib=${LOCAL_PERL}` src/confirm-casual-racing-for-the-week.pl -cfg etc/config-test.ini
 	. venv/bin/activate && \
 		src/registrations.py -cfg etc/config-test.ini -reset
-	src/confirm-casual-racing-for-the-week.pl -cfg etc/config-test.ini
+	eval `perl -Mlocal::lib=${LOCAL_PERL}` src/confirm-casual-racing-for-the-week.pl -cfg etc/config-test.ini
 
 module_list.txt:
 	find . -type f -name "*.p[lm]" -o -name "*.t" | \
