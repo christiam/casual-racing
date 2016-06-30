@@ -57,6 +57,9 @@ if (utils::bad_winds_for_sailing($forecast) or $EXITVAL == 1) {
     $body = $body_confirm;
     $subject = $subject_yes;
 }
+$body .= "\n" . ('-'x80);
+$body .= "\n$forecast\n";
+
 if ($no_email) {
     print "$subject\n";
 } else {
