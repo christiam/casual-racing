@@ -5,7 +5,7 @@ SHELL=/bin/bash
 0 16 * 4-9 4 cd casual-racing; eval `perl -Mlocal::lib=$HOME/perl`; . venv/bin/activate; src/confirm-casual-racing-for-the-week.pl -cfg etc/config.ini
 0 16 * 4-9 7 cd casual-racing; . venv/bin/activate; src/registrations.py -cfg etc/config.ini -reset
 
-35 12 * apr-sep * cd casual-racing; eval `perl -Mlocal::lib=$HOME/perl`; src/selbybay_winds.pl $MAILTO
+35 11 * apr-sep * cd casual-racing; eval `perl -Mlocal::lib=$HOME/perl`; src/selbybay_winds.pl $MAILTO
 
 # Full test cycle, including confirmation/cancellation
 25 2 30 6 3 cd casual-racing; eval `perl -Mlocal::lib=$HOME/perl`; src/announce-casual-racing-for-the-week.pl -cfg etc/config-test.ini
