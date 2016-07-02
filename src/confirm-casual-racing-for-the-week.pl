@@ -19,11 +19,15 @@ my $subject_yes = "Casual racing on $date_str: CONFIRMED";
 my $weather_report = lib::abs::path("selbybay-winds.pl");
 my $registration_check = lib::abs::path("registrations.py");
 my $no_email = 0;
+my $help_requested = 0;
 
-GetOptions("cfg=s"    => \$config_file,
-           "no_email" => \$no_email) || pod2usage(2);
+GetOptions("cfg=s"          => \$config_file,
+           "no_email"       => \$no_email,
+           "help|?"         => \$help_requested) || pod2usage(2);
+pod2usage(-verbose=>2) if ($help_requested);
 pod2usage(-verbose=>2, -message=>"Missing config file") if (not defined $config_file and not -f $config_file);
 my %cfg;
+
 Config::Simple->import_from($config_file, \%cfg);
 my @mailto = split(/\s/, $cfg{'nihsa-casual-racing.mailto'});
 my $from = $cfg{'nihsa-casual-racing.from'};
@@ -84,3 +88,60 @@ sub send_email
         );
     $msg->send;
 }
+
+__END__
+
+=head1 NAME
+
+B<confirm-casual-racing-for-the-week.pl> - Emails the casual racing mailing
+list confirming or cancelling this week's racing.
+
+=head1 SYNOPSIS
+
+confirm-casual-racing-for-the-week.pl -cfg etc/config.ini [-no_email]
+
+=head1 REQUIRED ARGUMENTS
+
+=over
+
+=item B<-cfg>
+
+Path to configuration file.
+
+=item B<-no_email>
+
+Disables sending email; displays email subject on output instead (useful for
+testing).
+
+=item B<-help>, B<-?>
+
+Displays this man page.
+
+=back
+
+=head1 CONFIGURATION
+
+The following configuration values are needed by this application:
+
+=over
+
+=item * 
+
+mailto: email address to send the announcement to
+
+=item *
+
+from: who sends the email
+
+=item *
+
+registrations: Google spreadsheet key name where registrations are collected.
+
+=back
+
+=head1 AUTHOR
+
+Christiam Camacho
+
+=cut
+
