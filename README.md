@@ -7,3 +7,9 @@ This contains a few scripts to automate running the casual racing program.
 
 ## Assumptions
 * `from` email address is a member of mailing list
+
+## Maintainer's instructions
+* Provision machine with internet connectivity and deploy scripts. A
+  [reserved instance from AWS](https://aws.amazon.com/ec2/purchasing-options/reserved-instances/buyer/) should suffice.
+* Turn on crontab at the beginning of the season (late april, check calendar)
+* Turn off crontab at the end of the season (mid-september, follow fs42.org's lead)
