@@ -1,6 +1,7 @@
 config-test.ini
 nihsa-casual-racing-e7156b1771ba.json
 cron-test.tab
+perl
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
