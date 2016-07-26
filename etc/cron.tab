@@ -2,7 +2,7 @@ MAILTO=
 SHELL=/bin/bash
 # Times are in UTC
 0 16 * 4-9 2 cd casual-racing; eval `perl -Mlocal::lib=$HOME/perl`; src/announce-casual-racing-for-the-week.pl -cfg etc/config.ini
-0 16 * 4-9 4 cd casual-racing; eval `perl -Mlocal::lib=$HOME/perl`; . venv/bin/activate; src/confirm-casual-racing-for-the-week.pl -cfg etc/config.ini
+0 16 * 4-9 4 cd casual-racing; eval `perl -Mlocal::lib=$HOME/perl`; . venv/bin/activate; src/confirm-casual-racing-for-the-week.pl -cfg etc/config.ini >& /dev/null
 0 16 * 4-9 7 cd casual-racing; . venv/bin/activate; src/registrations.py -cfg etc/config.ini -reset
 
 35 11 * apr-sep * cd casual-racing; eval `perl -Mlocal::lib=$HOME/perl`; src/selbybay-winds.pl $MAILTO
