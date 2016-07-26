@@ -8,13 +8,18 @@ use Config::Simple ();
 use lib::abs qw(../lib);
 use autodie;
 use Date::Manip;
+use IPC::System::Simple qw(run capture $EXITVAL EXIT_ANY);
+
 my $config_file;
 my $date = Date::Manip::Date->new("thursday");
 my $date_str = $date->printf("%D");
 my $subject = "Casual racing on $date_str";
+my $weather_report = lib::abs::path("selbybay-winds.pl");
+my $no_email = 0;
 my $help_requested = 0;
 
 GetOptions("cfg=s"          => \$config_file,
+           "no_email"       => \$no_email,
            "help|?"         => \$help_requested) || pod2usage(2);
 pod2usage(-verbose=>2) if ($help_requested);
 pod2usage(-verbose=>2, -message=>"Missing config file") if (not defined $config_file and not -f $config_file);
@@ -32,7 +37,19 @@ Thanks in advance, regards,
 NIHSA Casual Racing Committee
 EOF
 
-send_email(to=>\@mailto, from=>$from, subj=>$subject, body=>$body);
+my $forecast = capture(EXIT_ANY, $weather_report);
+if ($EXITVAL) {
+    warn "$weather_report failed with exit code $EXITVAL";
+} else {
+    $body .= "\n" . ('-'x80);
+    $body .= "\n$forecast\n";
+}
+
+if ($no_email) {
+    print "$subject\n$body\n";
+} else {
+    send_email(to=>\@mailto, from=>$from, subj=>$subject, body=>$body);
+}
 
 sub send_email
 {
