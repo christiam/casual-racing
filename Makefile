@@ -1,5 +1,6 @@
 .PHONY: setup clean check archive
 
+#LOCAL_PERL=${PWD}/perl
 LOCAL_PERL=${HOME}/perl
 PERL5LIB=${LOCAL_PERL}/lib/perl5
 
