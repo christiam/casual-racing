@@ -30,8 +30,12 @@ my @mailto = split(/\s/, $cfg{'nihsa-casual-racing.mailto'});
 my $from = $cfg{'nihsa-casual-racing.from'};
 my $body = <<EOF;
 Hi everyone,
-     Please use the following link to sign up for this week's casual racing: http://goo.gl/forms/bDhRcvPbVH
-If you need to make any changes, please let us know via this mailing list.
+     If you are new to the list and/or unfamiliar with how casual racing works,
+please read the following document: http://tinyurl.com/pf9h9tp
+Once you have organized your sailing team, please use the following link to
+sign up for this week's casual racing (one registration per team/boat):
+http://goo.gl/forms/bDhRcvPbVH
+    If you need to make any changes, please let us know via this mailing list.
 Thanks in advance, regards,
 
 NIHSA Casual Racing Committee
