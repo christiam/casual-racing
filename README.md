@@ -1,4 +1,7 @@
 # casual-racing
+
+[![Build Status](https://travis-ci.org/christiam/casual-racing.svg?branch=master)](https://travis-ci.org/christiam/casual-racing)
+
 This contains a few scripts to automate running the casual racing program.
 
 ## Deployment and Initialization
